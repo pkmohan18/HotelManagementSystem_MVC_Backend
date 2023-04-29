@@ -55,4 +55,13 @@ public class hotelUserDao {
 		return user;
 	}
 
+	public void update(hotelUser user) {
+		Session session = factory.openSession();
+		Transaction transaction = session.beginTransaction();
+		session.update(user);
+		transaction.commit();
+		session.close();
+		
+	}
+
 }

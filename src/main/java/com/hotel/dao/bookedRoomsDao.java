@@ -63,4 +63,13 @@ public class bookedRoomsDao {
 		session.close();
 		return room;
 	}
+
+	public void update(bookedRooms room) {
+		Session session = factory.openSession();
+		Transaction transaction = session.beginTransaction();
+		session.update(room);
+		transaction.commit();
+		session.close();
+		
+	}
 }

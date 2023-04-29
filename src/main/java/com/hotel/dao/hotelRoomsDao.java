@@ -23,16 +23,16 @@ public class hotelRoomsDao {
 	
 	public void save(hotelRooms room) {
 		Session session = factory.openSession();
+		Transaction transaction = session.beginTransaction();
 		session.save(room);
+		transaction.commit();
 		session.close();
 	}
 
 	public List<hotelRooms> getAll() {
 		Session session = factory.openSession();
-		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from hotelRooms");
 		List<hotelRooms> list = query.getResultList();
-		transaction.commit();
 		session.close();
 		return list;
 	}
@@ -58,10 +58,17 @@ public class hotelRoomsDao {
 
 	public hotelRooms getById(int id) {
 		Session session = factory.openSession();
-		Transaction transaction = session.beginTransaction();
 		hotelRooms room = session.get(hotelRooms.class, id);
-		transaction.commit();
 		session.close();
 		return room;
+	}
+
+	public void update(hotelRooms room) {
+		Session session = factory.openSession();
+		Transaction transaction = session.beginTransaction();
+		session.update(room);
+		transaction.commit();
+		session.close();
+		
 	}
 }

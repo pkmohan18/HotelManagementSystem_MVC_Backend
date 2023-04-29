@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hotel.dao.hotelRoomsDao;
 import com.hotel.dto.hotelRooms;
+import com.hotel.dto.hotelUser;
 
 @Controller
 @RequestMapping("room")
@@ -30,6 +31,12 @@ public class roomController {
 	public ResponseEntity<String> saveRoom(@RequestBody hotelRooms room) {
 		dao.save(room);
 		return new ResponseEntity<>("Room Saved",HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> updateRoom(@RequestBody hotelRooms room) {
+		dao.update(room);
+		return new ResponseEntity<>("Room updated",HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "get", produces = MediaType.APPLICATION_JSON_VALUE)

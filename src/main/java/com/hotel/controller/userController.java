@@ -32,6 +32,12 @@ public class userController {
 		return new ResponseEntity<>("user Saved",HttpStatus.OK);
 	}
 	
+	@PostMapping(value = "update", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> updateUser(@RequestBody hotelUser user) {
+		dao.update(user);
+		return new ResponseEntity<>("user updated",HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "get", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<hotelUser>> getUSers() {
 		List<hotelUser> list = dao.getAll();
